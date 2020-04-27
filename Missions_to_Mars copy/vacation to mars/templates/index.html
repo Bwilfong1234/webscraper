@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mars Weather</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="jumbotron text-center">
+            <h1>Visit Mars</h1>
+            <p>theres nothing there</p>
+            <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Get Data!</a></p>
+        </div>
+        <h1>Weather:{{ vacation.Wether_report}}</h1>
+        <img src="{{vacation.Fetured}}" alt="Featured_img">
+        <h2>The top story on mars is:</h2>
+        <h3>Header: {{ vacation.Header }}</h3>
+        <h3>Body: {{ vacation.bodys }}</h3>
+
+    </div>
+    </div>
+    <div class="container-fluid">
+        {{vacation.table}}
+    </div>
+    <div class="container-fluid">
+        <div>
+            <h2>
+                'Syrtis': 'Syrtis Major Hemisphere'</h2>
+            <img src="{{vacation.Syrtis}}" alt="Syrtis">
+        </div>
+        <div>
+            <h2>'Schiaparelli': 'Schiaparelli Hemisphere'</h2>
+            <img src="{{vacation.Schiaparelli}}" alt="Schiaparelli">
+        </div>
+        <div>
+            <h2>'Valles': 'Valles Marineris Hemisphere'</h2>
+            <img src="{{vacation.Valles}}" alt="Valles">
+        </div>
+        <div>
+            <h2>
+                'Cerberus': Cerberuss Hemisphere '</h2>
+            <img src="{{vacation.Cerberus}}" alt="Cerberus">
+        </div>
+
+    </div>
+
+</body>
+<!-- costa_datas = {
+  "Fetured": featuredimgurl,
+  "Header": head,
+  "bodys": snooz,
+  "Wether_report": Wether_report
+  "Syrtis":hemisphere_image_ur[3]
+  "Schiaparelli":hemisphere_image_ur[2]
+  "Valles":hemisphere_image_ur[1]
+  "Cerberus":hemisphere_image_ur[0]
+  "table":bbt
+} -->
+
+</html>

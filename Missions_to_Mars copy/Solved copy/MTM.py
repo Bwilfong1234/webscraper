@@ -78,7 +78,7 @@ def scrape_info():
 
         except AttributeError as e:
             print(e)
-    time.sleep(10)       
+    time.sleep(1)       
             
     # browser.quit()        
 
@@ -118,7 +118,7 @@ def scrape_info():
 
         except AttributeError as e:
             print(e)
-    time.sleep(10)       
+    time.sleep(1)       
             
     # browser.quit()
 
@@ -152,7 +152,7 @@ def scrape_info():
 
 
     executable_path = {'executable_path': '/usr/local/bin/chromedriver'}
-    browser = Browser('chrome', **executable_path, headless=False)
+    browser = Browser('chrome', **executable_path, headless=True)
     time.sleep(5)
 
     url2 = 'https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars'
@@ -169,11 +169,11 @@ def scrape_info():
                 featuredimg=image.img['src']
                 print('page:', x, '-------------')
                 print(image.img['src'])
-        
+                featuredimgurl= f"https://www.jpl.nasa.gov{featuredimg}"
         except AttributeError as e:
             print(e)
 
-    time.sleep(10)       
+    time.sleep(3)       
             
     # browser.quit()
 
@@ -213,7 +213,7 @@ def scrape_info():
         
         except AttributeError as e:
             print(e)
-    time.sleep(10)       
+    time.sleep(3)       
             
     # browser.quit()
 
@@ -244,9 +244,14 @@ def scrape_info():
 
 
     url = 'https://space-facts.com/mars/'
-    tables = pd.read_html(url)
-
-
+    tables= pd.read_html(url)
+    df = tables[1]
+    df
+    table=df.to_html( 
+    classes='table table-striped' 
+    ) 
+    table.replace('\n', '')  
+    
     # In[44]:
 
 
@@ -265,14 +270,14 @@ def scrape_info():
     browser.visit(url5)
     time.sleep(5)
     browser.click_link_by_partial_text('Cerberus')
-    time.sleep(5)
+    time.sleep(3)
     html = browser.html
     soup = bs(html, 'html.parser')
     Divs12 = soup.find("div", class_='downloads')
     imglink1= Divs12.a['href']
-    hemisphere_image_ur.append(f"'title': 'Cerberus Hemisphere', {imglink1}")
+    hemisphere_image_ur.append(imglink1)
 
-    time.sleep(10)       
+    time.sleep(3)       
             
     # browser.quit()
 
@@ -310,14 +315,13 @@ def scrape_info():
     browser.visit(url5)
     time.sleep(5)
     browser.click_link_by_partial_text('Valles')
-    time.sleep(5)
-    time.sleep(5)
+   
     html = browser.html
     soup = bs(html, 'html.parser')
     Divs12 = soup.find("div", class_='downloads')
     imglink2= Divs12.a['href']
-    hemisphere_image_ur.append(f"'title': 'Valles Marineris Hemisphere',{imglink2}")
-    time.sleep(10)       
+    hemisphere_image_ur.append(imglink2)
+    time.sleep(3)       
             
     # browser.quit()
 
@@ -343,8 +347,8 @@ def scrape_info():
     soup = bs(html, 'html.parser')
     Divs12 = soup.find("div", class_='downloads')
     imglink3= Divs12.a['href']
-    hemisphere_image_ur.append(f"'title': 'Schiaparelli Hemisphere', {imglink3}")
-    time.sleep(10)       
+    hemisphere_image_ur.append(imglink3)
+    time.sleep(3)       
   
 
     # In[49]:
@@ -363,29 +367,41 @@ def scrape_info():
     soup = bs(html, 'html.parser')
     Divs12 = soup.find("div", class_='downloads')
     imglink4= Divs12.a['href']
-    hemisphere_image_ur.append(f"'title': 'Syrtis Major Hemisphere', {imglink4}")
+    hemisphere_image_ur.append(imglink4)
 
-    time.sleep(10)       
+    time.sleep(3)       
             
     # browser.quit()
 
+# 'Syrtis': 'Syrtis Major Hemisphere', f"'Schiaparelli': 'Schiaparelli Hemisphere', f"'Valles': 'Valles Marineris Hemisphere'
 
     # In[50]:
 
 
     hemisphere_image_ur
-
+    Syrtiss=f"{hemisphere_image_ur[-1]}"
+    #Syrtiss.append(f"{hemisphere_image_ur[-1]}")
+    Schiaparelli=f"{hemisphere_image_ur[2]}"
+   # Schiaparelli.appendf"{hemisphere_image_ur[2]}"
+    Valles=f"{hemisphere_image_ur[1]}"
+    #Valles.append(f"{hemisphere_image_ur[1]}")
+    Cerberus=f"{hemisphere_image_ur[0]}"
+   #Cerberus.append(f"{hemisphere_image_ur[0]}")
 
     # In[ ]:
 
-    scrape= (hemisphere_image_ur, Wether_report,snooz,head,featuredimgurl)
+    # scrape= (hemisphere_image_ur, Wether_report,snooz,head,featuredimgurl)
 
     costa_datas = {
             "Fetured": featuredimgurl,
             "Header": head,
             "bodys": snooz,
-            "Wether_report": Wether_report
-
+            "Wether_report": Wether_report,
+            "Syrtis":Syrtiss,
+            "Schiaparelli":Schiaparelli,
+            "Valles":Valles,
+            "Cerberus":Cerberus,
+            "table":table
         }
     browser.quit()
 
